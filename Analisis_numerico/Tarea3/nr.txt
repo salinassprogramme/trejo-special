@@ -1,0 +1,14 @@
+NR(){
+	f=obtenerfuncion()
+	resultado=valorinicial
+	//derivar la función
+	//iniciar la variable error
+	while(error>error deseado){
+		//asignar resultado a una variable temporal
+		resultado=x-f(temporal)/f'(temporal)
+		//calcular el nuevo error 
+	
+	}
+	return resultado
+
+}

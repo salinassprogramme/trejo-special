@@ -1,0 +1,15 @@
+FUNCTION Fixpt(x0, es, imax iter, ea)
+xr = x0
+iter = 0
+DO
+xrold = xr
+xr = g(xrold)
+iter = iter + 1
+lF xr ≠ 0 THEN
+ea xr– xrold
+xr 100= ⋅
+END IF
+IF ea < es 0R iter ≥ imax EXIT
+END DO
+Fixpt = xr
+END Fixpt

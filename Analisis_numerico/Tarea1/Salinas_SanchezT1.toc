@@ -1,0 +1,3 @@
+\babel@toc {spanish}{}
+\contentsline {chapter}{\numberline {1}Introducci\IeC {\'o}n}{2}{chapter.1}
+\contentsline {chapter}{\numberline {2}Actividades}{4}{chapter.2}

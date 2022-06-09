@@ -1,0 +1,154 @@
+%preámbulo
+\documentclass[12pt,oneside,FLEQN]{report}
+\usepackage{fancyhdr}
+\usepackage[pages=some]{background}
+\usepackage{amssymb,amsthm,amsmath,enumerate,graphicx,tabularx}
+\usepackage[utf8]{inputenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage[spanish]{babel}
+\usepackage[rflt]{floatflt}
+\usepackage{multicol}
+\usepackage{tcolorbox, empheq}
+\tcbuselibrary{skins,breakable,listings,theorems}
+\usepackage{tikz,tkz-tab}
+\usetikzlibrary{matrix,arrows, positioning,shadows,shadings,backgrounds,calc, shapes, tikzmark}
+\usepackage{subfigure}
+\usepackage{caption}
+\usepackage[a4paper]{geometry}
+\geometry{top=1.5cm, bottom=1.5cm, left=3cm, right=3cm}
+\usepackage{ragged2e}
+\newcommand{\marcar}[3]{\tikz[overlay,remember picture,baseline=-2pt] \node[circle,#1,draw,text=black, inner sep=1pt] (#2) { #3};}
+\parindent=0cm
+\usepackage{listings}
+\hypersetup{
+colorlinks=true,
+linkcolor=black,
+filecolor=magenta,
+urlcolor=cyan,
+citecolor=greenwhats
+}
+\backgroundsetup{
+	scale=1,
+	color=black,
+	opacity=0.4,
+	angle=0,
+	contents={\includegraphics[scale=1.5]{Fondoportada.png}}
+}
+\usepackage[dvipsnames,table]{xcolor}
+%\usepackage{lscape}
+\usepackage{enumitem}
+\definecolor{greenwhats}{RGB}{37, 211, 102}
+\definecolor{gris}{rgb}{0.33, 0.41, 0.47}
+\usepackage{fancyhdr}
+\usepackage{natbib}
+\usepackage{colortbl}
+\usepackage{array,booktabs}
+%\usepackage{pdflscape}
+\usepackage{longtable}
+\definecolor{codeturquoise}{RGB}{72,202,228}
+\definecolor{codeyellow}{RGB}{255,170,51}
+\definecolor{codepurple}{RGB}{255, 203, 242}
+\definecolor{codegreen}{RGB}{149,213,178}
+\definecolor{backcolour}{RGB}{73,80,87}
+\definecolor{white}{RGB}{255,255,255}
+\lstdefinestyle{estilochidori}{
+backgroundcolor=\color{backcolour},
+commentstyle=\color{codeyellow},
+keywordstyle=\color{codeturquoise},
+numberstyle=\tiny\color{codegreen},
+stringstyle=\color{codepurple},
+basicstyle=\ttfamily\footnotesize\color{white},
+breakatwhitespace=false,
+breaklines=true,
+captionpos=b,
+keepspaces=true,
+numbers=left,
+numbersep=5pt,
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+tabsize=2
+}
+\lstset{style=estilochidori}
+\begin{document}
+{
+\fontfamily{qag}\selectfont
+	\BgThispage
+\begin{titlepage}
+        \topmargin=1cm
+        \centering
+
+        {\bfseries\LARGE Universidad Autónoma de Querétaro \par}
+        \vspace{1cm}
+        {\scshape\Large  Facultad de Ingenier\'ia  \par}
+        \vspace{3cm}
+        %\centering
+        \begin{figure}[!h]
+        	\centering
+                \includegraphics[height=5cm]{Logouaq.png}
+        \end{figure}
+        \vspace{2cm}
+        {\itshape\large Tarea 11: Integración numérica pt.1\par}
+        \vspace{3cm}
+        {\Huge Análisis numérico\par}
+        \vspace{2cm}
+        {\Large Autor: \par}
+        {\large J.A. Salinas Sánchez \par}
+        {\large Abril 2022 \par}
+\end{titlepage}
+	\clearpage
+	\newpage
+\tableofcontents
+\chapter{Introducción}
+	Es indudable que el cálculo infitesimal ha cambiado a la humanidad para siempre, no sólo por su valor en el desarrollo científico y tecnológico, sino por el cambio que ocasionó en el entendimiento humano de las matemáticas. Un ejemplo de esto, es el hecho de poder lidiar con infinitos y poder entender el mundo de manera continua, tal como se presenta en muchos aspectos de la vida y del universo. Por esto mismo, el poder utilizarlo es fundamental; porque no sirve de nada tener las herramientas y el conocimiento teórico, si no se puede utilizar para resolver nuestros problemas. Esto, como ya se dijo desde el principio del curso, no se debe a nuestra falta de conocimiento o comprensión al respecto; ni que el cálculo no funcione o lo estemos aplicando mal. Simplemente, como también ya se dijo, las matemáticas llegan a complicarse mucho como para llegar a resolverlas analíticamente. Ahí es donde entra el análisis numérico, y la integración no se salva.\\
+
+Como ya se sabe, la integración consiste en aproximar de manera infinitesimal el área bajo la curva de una función, la cual acaba representando una u otra información, dependiendo de la función y del contexto que se trate. La manera en que esto se hace es sumando áreas de otras figuras geométricas euclídeas, cada vez más pequeñas, hasta el teórico infinito. Por esta razón, también se utiliza para sumar infinitos puntos dentro de un intervalo finito, siendo la definición por exelencia de suma continua, siendo su símbolo una S de suma. Esto último deriva en que su definición más común sea a través de sumas, siendo los métodos de integración numérica, sumas. Así, se obtiene los siguiente métodos:
+	\section{La suma de Riemann}
+		La definición más canónica de la integral. Es simple y elegante. Parte del hecho de sumar infinitas áreas de paralelogramos de base $\Delta x$ y alturas $y_{i}=f(x_{i})$, donde $x_{i}$ es el valor inicial del intervalo más un pequeño paso $k\Delta_{x}$. Siendo $k$ el número de paso dado por una pequeña longitud del paso. Entonces, la sumatoria queda:
+		\begin{equation}
+			\int_{a}^{b}f(x)dx=\lim_{n\to\infty}\sum_{k=0}^{k=n}f(a+k\Delta x)\Delta_{x}
+		\end{equation}
+		Con $\Delta_{x}=\dfrac{b-a}{n}$.\\
+
+		Con ésta; si, en lugar de llevar la suma a infinito, se utiliza con un número finito de iteraciones; se obtiene una aproximación numérica de la integral.
+	\section{Trapecio}
+		Se basa en la misma idea de la suma de Riemman, sólo que, en lugar de utilizar rectángulos; se usa trapecios para minimizar el error de las puntas excedentes. Basándose en el área de un trapecio $A=\dfrac{a+b}{2}\cdot y$, se obtiene la regla del trapecio simple, es decir, se utiliza un único trapecio para aproximar todo el área:
+		\begin{equation}
+			\int_{a}^{b}f(x)dx\approx \dfrac{f(a)+f(b)}{2}\dfrac{b-a}{n}
+		\end{equation}
+		Ahora bien, si se suma varias áreas de trapecios en lugar de uno solo, la regla del trapecio simple se convierte en la regla del trapecio compuesta; que queda:
+		\begin{equation}
+			\int_{a}^{b}f(x)dx\approx\dfrac{b-a}{n}\left[\dfrac{f(a)+f(b)}{2}+\sum_{k=1}^{n}f\left(a+k\dfrac{a+b}{2}\right)\right]
+		\end{equation}
+	\section{Simpson}
+		Este método, más que basarse en la definición de integral, lo que hace es obtener un polinomio interpolante (ya sea de grado 2 o 3) e integrarlo analíticamente. Para esto, se utiliza un polinomio de interpolación de Lagrange, se integra y se omite el factor de error, para obtener una expresión universal para las aproximaciones:
+		\begin{equation}
+			\int_{a}^{b}f(x)dx\approx\dfrac{b-a}{6}\left[f(a)+4f(\dfrac{a+b}{2}+f(b)\right]
+		\end{equation}
+		A la expresión anterior se le conoce como la regla del Simpson $\dfrac{1}{3}$ simple, y es utilizando polinomio de grado 2. Se le llama de un tercio gracias al coeficiente común de toda la expresión.\\
+
+		Si se quiere utilzar con un polinomio interpolante de Lagrange de tercer grado, se obtiene la regla de Simpson $\dfrac{3}{8}$, pues el factor común es tres octavos:
+		\begin{equation}
+			\int_{a}^{b}f(x)dx\approx\dfrac{3h}{8}\left[f(x_{0})+3f(x_{1}+3f(x_{2})+f(x_{3}))\right]
+		\end{equation}
+		Con $h=\dfrac{b-a}{n}$ 
+	\section{Boole}
+		Si bien, Simpson ya no extendió su regla hasta un polinomio de cuarto grado; hubo un matemático que sí lo hizo: George Boole. Consiste en lo mismo que los métodos anteriores, pero con un polinomio interpolante de Lagrange de cuarto orden. Se obtiene:
+		\begin{equation}
+			\int_{a}^{b}f(x)dx\approx\dfrac{2h}{45}\left[7f(x_{0})+32f(x_{1})+12f(x_{2})+32f(x_{3})+7f(x_{4})\right]
+		\end{equation}
+
+\chapter{Método}
+	El objetivo que se quiso lograr con el código que se presenta a continaución, fue tener la capacidad de integrar numéricamente una función mediante el método que el usuario escogiese. Siendo el propio usuario quien decidiera e introdujese los datos necesarios: la función en forma de cadena de texto, los límites y el método. Para ello, se puso todos los inputs desde la función main(), y a través de un árbol de decisión, con el método ya introducido por el usuario; se llama a la función del método seleccionado y termina por representar el resultado devuelto por dicha función. Las funciones literalmente ejecutan el algoritmo para cada método, ya definido anteriormente y la función getfunction() convierte la cadena de texto en una función evaluable para el lenguaje de programación.
+	\section{Código}
+		\lstinputlisting{Tarea11.py}
+	\section{Problemas}
+		\subsection{21.3}
+		\subsection{21.5}
+		\subsection{21.11}
+		\subsection{21.19}
+\chapter{Conclusiones}
+%\begin{thebibliography}
+%\end{thebibliography}
+}
+\end{document}

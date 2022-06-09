@@ -1,0 +1,118 @@
+%preámbulo
+\documentclass[12pt,oneside,FLEQN]{report}
+\usepackage{amssymb,amsthm,amsmath,enumerate,graphicx,tabularx}
+\usepackage[utf8]{inputenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage[spanish]{babel}
+\usepackage[rflt]{floatflt}
+\usepackage{multicol}
+\usepackage{tcolorbox, empheq}
+\tcbuselibrary{skins,breakable,listings,theorems}
+\usepackage{tikz,tkz-tab}
+\usetikzlibrary{matrix,arrows, positioning,shadows,shadings,backgrounds,calc, shapes, tikzmark}
+\usepackage{subfigure}
+\usepackage{caption}
+\usepackage[a4paper]{geometry}
+\geometry{top=1.5cm, bottom=1.5cm, left=3cm, right=3cm}
+\usepackage{ragged2e}
+\newcommand{\marcar}[3]{\tikz[overlay,remember picture,baseline=-2pt] \node[circle,#1,draw,text=black, inner sep=1pt] (#2) { #3};}
+\parindent=0cm
+\usepackage{listings}
+\hypersetup{
+colorlinks=true,
+linkcolor=black,
+filecolor=magenta,
+urlcolor=cyan,
+citecolor=greenwhats
+}
+\usepackage[dvipsnames,table]{xcolor}
+%\usepackage{lscape}
+\usepackage{enumitem}
+\definecolor{greenwhats}{RGB}{37, 211, 102}
+\definecolor{gris}{rgb}{0.33, 0.41, 0.47}
+\usepackage{fancyhdr}
+\usepackage{natbib}
+\usepackage{colortbl}
+\usepackage{array,booktabs}
+%\usepackage{pdflscape}
+\usepackage{longtable}
+\definecolor{codeturquoise}{RGB}{72,202,228}
+\definecolor{codeyellow}{RGB}{255,170,51}
+\definecolor{codepurple}{RGB}{255, 203, 242}
+\definecolor{codegreen}{RGB}{149,213,178}
+\definecolor{backcolour}{RGB}{73,80,87}
+\definecolor{white}{RGB}{255,255,255}
+\lstdefinestyle{estilochidori}{
+backgroundcolor=\color{backcolour},
+commentstyle=\color{codeyellow},
+keywordstyle=\color{codeturquoise},
+numberstyle=\tiny\color{codegreen},
+stringstyle=\color{codepurple},
+basicstyle=\ttfamily\footnotesize\color{white},
+breakatwhitespace=false,
+breaklines=true,
+captionpos=b,
+keepspaces=true,
+numbers=left,
+numbersep=5pt,
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+tabsize=2
+}
+\lstset{style=estilochidori}
+\begin{document}
+{
+\fontfamily{qag}\selectfont
+\begin{titlepage}
+        \topmargin=0cm
+        \centering
+
+        {\bfseries\LARGE Universidad Autónoma de Querétaro \par}
+        \vspace{1cm}
+        {\scshape\Large  Facultad de Ingenier\'ia  \par}
+        \vspace{2cm}
+        \centering
+        \begin{figure}[!h]
+        \centering
+                \includegraphics[height=5cm]{Logouaq.png}
+        \end{figure}
+        \vspace{3cm}
+        {\itshape\large Tarea 10: Interpolaciones \par}
+        \vspace{3cm}
+        {\Huge Análisis numérico \par}
+        \vspace{2cm}
+        {\Large Autor: \par}
+        {\large J.A. Salinas Sánchez \par}
+        {\large Marzo 2022 \par}
+\end{titlepage}
+\tableofcontents
+\chapter{Introducción}
+Como ya se dijo, es útil obtener datos a partir de las ecuaciones, y es igual de útil obtener ecuaciones de los datos; ¿pero has escuchado hablar de obtener datos de los datos?\\
+
+En capítulos anteriores ya se había visto las regresiones, pero éstas no son más que un tipo de los múltiples que hay para las interpolaciones. Básicamente, una interpolación es lo contrario a una extrapolación. Si bien, una extrapolación es usar información de un contexto para obtener o generar una nueva en otro contexto; una interpolación es utilizar la información de un contexto para generar nueva información dentro del mismo contexto. En palabras matemáticas: utilizar los puntos que ya se tiene, para generar nuevos puntos.\\
+
+Una manera de lograr este objetivo es mediante las regresiones; no obstante, no es la única manera de hacerlo. Existe una gran cantidad de métodos basados en las propiedades de las funciones algebraicas tal como su factorización o su construcción a partir de su razón de cambio; de las cuales, se puede obtener funciones en su representación algebraica (regresiones) o en su representación numérica. Un caso de ambas es el método de diferencias divididas de Newton.\\
+
+\section{Diferencias divididas}
+Este método consiste en tener una muestra de $n$ datos y obtener un polinomio de regresión con grado $n-1$, obteniendo la diferencia entre cada uno de las imágenes de los datos y dividiéndola entre los datos que la componen. En otras palabras, obteniendo las pendientes de líneas rectas finitas entre cada par de datos; e ir calculando la siguiente pendiente a partir de las pendientes anteriores hasta llegar a las pendientes de cada término del polinomio (coeficientes). Es decir, calculas el coeficiente para funciones independientes de grado $n$, las compones utilizando el teorema de factorización de $Weiertrass$ (toda función se puede expresar mediante un producto de sus raíces), y las sumas para obtener el polinomio de interpolación. Luego eliges si evaluarlo en qué puntos lo quieres evaluar. Matemáticamente, se podría expresar así:
+%\begin{figure}[!h]
+%\centering
+%\includegraphics[]{}
+%\caption{}
+%\end{figure}
+\section{Trazadores}
+Retomando el tren de pensamiento del apartado anterior, la mejor manera de interpolar datos, es ir construyendo funciones e ir uniéndolas. Éste es todo el contexto necesario para entender los trazadores. Un trazador es una función construída entre dos puntos, a partir de ciertas condiciones, que permitirá generar varios puntos dentro de dicho intervalo. Los trazadores polinómicos pueden ser de cualquier grado, y debe construirse uno por cada intervalo $[x_{i},x_{i+1}]$, y por cada condición.\\
+
+Para cada tipo de trazadores polinómicos, se tiene que cumplir las siguientes condiciones:
+\begin{itemize}
+	\item Los valores de la función debe ser igual en los nodos interiores.
+	\item La primera y la última función deben pasar a través de los extremos.
+	\item Las primeras derivadas (si extisten) deben ser iguales en los nodos interiores.
+	\item Lo mismo para las siguientes derivadas.
+	\item La derivada $n$-ésima debe ser 0 en los nodos extremos.
+\end{itemize}
+Con esto, se puede plantear un sistema de ecuaciones con el que obtener los valores interpolados para un conjunto de datos en un intervalo concreto. Es importante notar que, entre más alto sea el grado del trazador; mayor será su precisión y más suave será la curva que trazará. No obstante, será más difícil y costoso calcularlo. En especial que se tiene que repetir el proceso para cada intervalo $[x_{i},x_{i+1}]$.
+\chapter{Método y ejercicios}
+}
+\end{document}

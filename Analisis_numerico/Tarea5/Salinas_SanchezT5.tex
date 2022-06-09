@@ -1,0 +1,104 @@
+%preámbulo
+\documentclass[12pt,oneside,FLEQN]{report}
+\usepackage{amssymb,amsthm,amsmath,enumerate,graphicx,tabularx}
+\usepackage[utf8]{inputenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage[spanish]{babel}
+\usepackage[rflt]{floatflt}
+\usepackage{multicol}
+\usepackage{tcolorbox, empheq}
+\tcbuselibrary{skins,breakable,listings,theorems}
+\usepackage{tikz,tkz-tab}
+\usetikzlibrary{matrix,arrows, positioning,shadows,shadings,backgrounds,calc, shapes, tikzmark}
+\usepackage{subfigure}
+\usepackage{caption}
+\usepackage[a4paper]{geometry}
+\geometry{top=1.5cm, bottom=1.5cm, left=3cm, right=3cm}
+\usepackage{ragged2e}
+\newcommand{\marcar}[3]{\tikz[overlay,remember picture,baseline=-2pt] \node[circle,#1,draw,text=black, inner sep=1pt] (#2) { #3};}
+\parindent=0cm
+\usepackage{listings}
+\hypersetup{
+colorlinks=true,
+linkcolor=black,
+filecolor=magenta,
+urlcolor=cyan,
+citecolor=greenwhats
+}
+\usepackage[dvipsnames,table]{xcolor}
+%\usepackage{lscape}
+\usepackage{enumitem}
+\definecolor{greenwhats}{RGB}{37, 211, 102}
+\definecolor{gris}{rgb}{0.33, 0.41, 0.47}
+\usepackage{fancyhdr}
+\usepackage{natbib}
+\usepackage{colortbl}
+\usepackage{array,booktabs}
+%\usepackage{pdflscape}
+\usepackage{longtable}
+\definecolor{codeturquoise}{RGB}{72,202,228}
+\definecolor{codeyellow}{RGB}{255,170,51}
+\definecolor{codepurple}{RGB}{255, 203, 242}
+\definecolor{codegreen}{RGB}{149,213,178}
+\definecolor{backcolour}{RGB}{73,80,87}
+\definecolor{white}{RGB}{255,255,255}
+\lstdefinestyle{estilochidori}{
+backgroundcolor=\color{backcolour},
+commentstyle=\color{codeyellow},
+keywordstyle=\color{codeturquoise},
+numberstyle=\tiny\color{codegreen},
+stringstyle=\color{codepurple},
+basicstyle=\ttfamily\footnotesize\color{white},
+breakatwhitespace=false,
+breaklines=true,
+captionpos=b,
+keepspaces=true,
+numbers=left,
+numbersep=5pt,
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+tabsize=2
+}
+\lstset{style=estilochidori}
+\begin{document}
+{
+\fontfamily{qag}\selectfont
+\begin{titlepage}
+        \topmargin=0cm
+        \centering
+
+        {\bfseries\LARGE Universidad Autónoma de Querétaro \par}
+        \vspace{1cm}
+        {\scshape\Large  Facultad de Ingenier\'ia  \par}
+        \vspace{2cm}
+        \centering
+        \begin{figure}[!h]
+        \centering
+                \includegraphics[height=5cm]{Logouaq.png}
+        \end{figure}
+        \vspace{3cm}
+        {\itshape\large Tarea 2: Métodos cerrados para ecuaciones de una variable\par}
+        \vspace{3cm}
+        {\Huge Análisis numérico \par}
+        \vspace{2cm}
+        {\Large Autor: \par}
+        {\large J.A. Salinas Sánchez \par}
+        {\large Febrero 2022 \par}
+\end{titlepage}
+\tableofcontents
+\chapter{Introducción}
+Ya sabemos lo que es un sistema de ecuaciones, los métodos de suma y resta, Cramer, eliminación Gaussiana, el pivoteo, el método de Gauss-Jordan y una gráfica. Así que procederemos a los problemas.
+\chapter{Metodología}
+	Para las gráficas, se hizo un script por separado que generaba varios puntos de la función a evaluar y los graficaba. Para el problema 9.3, se hizo un script específico para multiplicar matrices mediante el algoritmo incluido en el módulo numpy. Finalmente, los métodos de Cramer,Gauss y Gauss-Jordan, así como todas las funciones auxiliares como el pivoteo, crear matrices o cambiar columnas y calcular determinates, se incluyen en el mismo script.
+		\lstinputlisting{matrices.py}
+\section{Problemas}
+	\subsection{9.3}
+		\lstinputlisting{matricesmulti.py}
+	\subsection{9.5}
+		\lstinputlisting{matricesgraph.py}
+	\subsection{9.7}
+	\subsection{9.9}
+	\subsection{9.13}
+}
+\end{document}

@@ -1,0 +1,5 @@
+\babel@toc {spanish}{}
+\contentsline {section}{\numberline {0.1}Problema 1}{1}{section.0.1}
+\contentsline {subsection}{\numberline {0.1.1}Cerrado}{1}{subsection.0.1.1}
+\contentsline {subsection}{\numberline {0.1.2}Abierto}{2}{subsection.0.1.2}
+\contentsline {section}{\numberline {0.2}Problema 2}{3}{section.0.2}

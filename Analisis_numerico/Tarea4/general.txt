@@ -1,0 +1,33 @@
+//importar módulos
+
+
+
+main(){
+	//ingresar función
+	//ingresar x0
+	//ingresar tolerancia
+	NR(función,x0,tolerancia)
+}
+
+definirfuncion(función){
+	return f
+}
+
+NRmod(función,x0,tolerancia){
+	
+	f=definirfuncion(función)
+	dx1=derivar(f)
+	dx2=derivar(dx1)
+	F_NRmod=x-f*dx1/(dx1**2-f*dx1)
+	intentos=0
+	ea=100
+	while(intentos<intentospermitidos){
+		while(ea>tolerancia){
+			//guardar la solución anterior en temp
+			//calcular soluciones
+		}
+		//resetear ea
+		//mover x0
+	}
+	return soluciones
+}

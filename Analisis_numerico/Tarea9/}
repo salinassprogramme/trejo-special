@@ -1,0 +1,47 @@
+#coding:utf8
+
+import numpy as np
+import math as mt
+
+def main():
+
+    x=[]
+    y=[]
+    xy=[]
+    xm=[]
+    
+    n=int(input('Introduzca el tamaño de su muestra: '))
+    m=int(input('Introduzca el grado de su regresión: '))
+
+    for i in range(n):
+        x.append(float(input(f'Introduzca su dato {i+1} para x: ')))
+    
+    i=0
+
+    for i in range(n):
+        y.append(float(input(f'Introduzca su dato {i+1} para y: ')))
+
+    xarr=np.zeros((n,m))
+
+    for i in range(0,m):
+        for j in range(0,len(x)):
+            xarr[j][i]=x[j]**i
+    
+    print(xarr)
+
+    xT=np.transpose(xarr)
+
+    xxT=np.dot(xarr,xT)
+
+    xxTinv=np.linalg.inv(xxT)
+
+    xTy=np.dot(xT,y)
+
+    res=np.dot(xTy,xxTinv)
+
+    print(res)
+
+
+
+if __name__ == '__main__':
+    main()

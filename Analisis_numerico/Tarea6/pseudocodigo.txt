@@ -1,0 +1,30 @@
+
+
+main(){
+	uk=numero de incógnitas
+	//definir la matriz expandida del sistema de ecuaciones
+	//definir una matriz temporal para guardar las soluciones
+	LU(matriz,temporal,uk)	
+
+}
+
+LU(matriz,temporal,uk){
+
+	u[uk][uk+1]=zeros//iniciar la matriz u en ceros
+	l[uk][uk+1]=I+v[0,0,0,0]//iniciar la matriz l como I más una columna
+	listaparaarmarl=[]
+	//añadir los términos independientes de matriz a l
+	//eliminación gausiana sobre matriz
+		//ir añadiendo los ratios de la eliminación a la lista
+	//añadir solo los coeficientes de matriz a u
+	//vaciar listaparaarmarl en l debajo de su diagonal
+
+	//resolver el sistema de ecuaciones de l
+	//añadir los resultados como términos independientes en u
+	//resolver para u
+	//devolver resultados
+	(si el problema lo pide, multiplicar l*u y mostrarla)
+
+}
+
+

@@ -1,0 +1,117 @@
+%preámbulo
+\documentclass[12pt,oneside,FLEQN]{report}
+\usepackage{amssymb,amsthm,amsmath,enumerate,graphicx,tabularx}
+\usepackage[utf8]{inputenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage[spanish]{babel}
+\usepackage[rflt]{floatflt}
+\usepackage{multicol}
+\usepackage{tcolorbox, empheq}
+\tcbuselibrary{skins,breakable,listings,theorems}
+\usepackage{tikz,tkz-tab}
+\usetikzlibrary{matrix,arrows, positioning,shadows,shadings,backgrounds,calc, shapes, tikzmark}
+\usepackage{subfigure}
+\usepackage{caption}
+\usepackage[a4paper]{geometry}
+\geometry{top=1.5cm, bottom=1.5cm, left=3cm, right=3cm}
+\usepackage{ragged2e}
+\newcommand{\marcar}[3]{\tikz[overlay,remember picture,baseline=-2pt] \node[circle,#1,draw,text=black, inner sep=1pt] (#2) { #3};}
+\parindent=0cm
+\usepackage{listings}
+\hypersetup{
+colorlinks=true,
+linkcolor=black,
+filecolor=magenta,
+urlcolor=cyan,
+citecolor=greenwhats
+}
+\usepackage[dvipsnames,table]{xcolor}
+%\usepackage{lscape}
+\usepackage{enumitem}
+\definecolor{greenwhats}{RGB}{37, 211, 102}
+\definecolor{gris}{rgb}{0.33, 0.41, 0.47}
+\usepackage{fancyhdr}
+\usepackage{natbib}
+\usepackage{colortbl}
+\usepackage{array,booktabs}
+%\usepackage{pdflscape}
+\usepackage{longtable}
+\definecolor{codeturquoise}{RGB}{72,202,228}
+\definecolor{codeyellow}{RGB}{255,170,51}
+\definecolor{codepurple}{RGB}{255, 203, 242}
+\definecolor{codegreen}{RGB}{149,213,178}
+\definecolor{backcolour}{RGB}{73,80,87}
+\definecolor{white}{RGB}{255,255,255}
+\lstdefinestyle{estilochidori}{
+backgroundcolor=\color{backcolour},
+commentstyle=\color{codeyellow},
+keywordstyle=\color{codeturquoise},
+numberstyle=\tiny\color{codegreen},
+stringstyle=\color{codepurple},
+basicstyle=\ttfamily\footnotesize\color{white},
+breakatwhitespace=false,
+breaklines=true,
+captionpos=b,
+keepspaces=true,
+numbers=left,
+numbersep=5pt,
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+tabsize=2
+}
+\lstset{style=estilochidori}
+\begin{document}
+{
+\fontfamily{qag}\selectfont
+\begin{titlepage}
+        \topmargin=0cm
+        \centering
+
+        {\bfseries\LARGE Universidad Autónoma de Querétaro \par}
+        \vspace{1cm}
+        {\scshape\Large  Facultad de Ingenier\'ia  \par}
+        \vspace{2cm}
+        \centering
+        \begin{figure}[!h]
+        \centering
+                \includegraphics[height=5cm]{Logouaq.png}
+        \end{figure}
+        \vspace{3cm}
+        {\itshape\large Tarea 4: Raíces múltiples\par}
+        \vspace{3cm}
+        {\Huge Análisis numérico \par}
+        \vspace{2cm}
+        {\Large Autor: \par}
+        {\large J.A. Salinas Sánchez \par}
+        {\large Febrero 2022 \par}
+\end{titlepage}
+\tableofcontents
+\chapter{Introducción}
+Siguiendo con el arte de obtener respuestas de lo aparentemente irresolvible, seguimos con ecuaciones de una sola variable; pero con cómo encontrar las múltiples raíces de una ecuación. Como lo establece el teorema fundamental del álgebra, toda ecuación tiene $n$ raíces complejas igual al grado de dicha ecuación. Dentro de las cuales se puede hallar varias reales o con un significado físico notable, pues, si bien un tiempo negativo o distancias complejas no tienen significado físico real; un tiempo real en cualquier rama de la física, o un número complejo en cuántica, sí lo tienen. Entonces, si se tiene la posibilidad de calcular cuantas raíces se pueda; los físicos/ingenieros/matemáticos estarán gustosos de hacerlo.\\
+
+Ya sabiendo la importancia de calcular múltiples raíces de una ecuación, al entrar al cómo, nos damos cuenta de la existencia de varios obstáculos para hacerlo: las funciones pueden no cambiar de signo entre raíces, las raíces pueden estar muy separadas, pueden encontrarse cerca de alguna indeterminación en la función o simplemente puede no tener raíces reales. Aquí es donde entran cuantos métodos modificados se pueda; tanto para resolver los problemas derivados de las singularidades de una función, como para obtener una convergencia rápida o hallar raíces complejas o sólo reales; dependiendo de lo buscado. \\
+
+\section{Newton-Raphson modificado}
+A pesar de la existencia de múltiples métodos para solucionar lo anteriormente planteado, el más poderoso en cuanto a convergencia y a evasión de singularidades es el método de Newton-Raphson modificado, pues éste se aprovecha de la segunda derivada de una función para calcular con más presición la bajada de las rectas aproximativas, causando una convergencia más rápida y no salirse de la función, evitando caer en singularidades. El método NR modificado se basa en la definición de la derivada de un cosciente, introduciendo una substitución para obtener la siguiente fórmula:
+	\begin{gather}
+		u(x)=\dfrac{f(x)}{f'(x)}\\
+		u'(x)=\dfrac{f'(x)f'(x)-f''(x)f(x)}{{f'(x)}^2}\\
+		g(x)=x-\dfrac{\dfrac{f(x)}{f'(x)}}{\dfrac{{f'(x)}^2-f''(x)f(x)}{{f'(x)}^2}}\\
+		g(x)=x-\dfrac{f(x)f'(x)}{{f'(x)}^2-f(x)f''(x)}
+	\end{gather}
+
+
+\chapter{Métodología}
+Se utililizó el algoritmo de NR modificado para calcular las raíces múltiples, además, se hizo uso de diferentes módulos de Python3 para lograr que el usuario pudiera introducir su función mediante teclado y que el cálculo de las derivadas y de la fórmula NR modificada se hiciera de manera automática, sin necesidad de tocar el código fuente. Por último, se mueve el valor inicial de la siguiente iteración escalándolo por un factor de $-100$ para cambiar su signo y acercarlo a otra posible raíz. Si bien, esto puede ser poco eficiente, funciona y fue lo que se concibió en su momento.
+	\section{Pseudocódigo general}
+		\lstinputlisting{general.txt}
+	\section{Código final}
+		\lstinputlisting{Tarea4.py}
+\chapter{Ejercicios}
+\begin{thebibliography}{7}
+	\bibitem [1] Chapra. S.C et Canale R.P (2015) {\it Métodos numéricos para ingenieros.} McGrawHill. pp (113-124)\&(135-136)
+	\bibitem [2] Walls, P., 2022. Secant method. Secant Method - Mathematical Python. Available at: https://personal.math.ubc.ca/~pwalls/math-python/roots-optimization/secant/ [Accessed February 10, 2022]. 
+\end{thebibliography}
+}
+\end{document}

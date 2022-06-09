@@ -1,0 +1,25 @@
+
+
+main(){
+	//pedir la función f
+	//pedir x0
+	//pedir e%
+	//pedir método
+
+	if(método==NR){
+		NR()
+	}
+	else if(método==punto fijo){
+		punto fijo()
+	}
+	else if(método=secante){
+		secante()
+
+	}
+
+
+}
+
+
+
+////funciones de los método

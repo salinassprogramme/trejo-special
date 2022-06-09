@@ -1,0 +1,157 @@
+%preámbulo
+\documentclass[12pt,oneside,FLEQN]{report}
+\usepackage{fancyhdr}
+\usepackage[pages=some]{background}
+\usepackage{amssymb,amsthm,amsmath,enumerate,graphicx,tabularx}
+\usepackage[utf8]{inputenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage[spanish]{babel}
+\usepackage[rflt]{floatflt}
+\usepackage{multicol}
+\usepackage{tcolorbox, empheq}
+\tcbuselibrary{skins,breakable,listings,theorems}
+\usepackage{tikz,tkz-tab}
+\usetikzlibrary{matrix,arrows, positioning,shadows,shadings,backgrounds,calc, shapes, tikzmark}
+\usepackage{subfigure}
+\usepackage{caption}
+\usepackage[a4paper]{geometry}
+\geometry{top=1.5cm, bottom=1.5cm, left=3cm, right=3cm}
+\usepackage{ragged2e}
+\newcommand{\marcar}[3]{\tikz[overlay,remember picture,baseline=-2pt] \node[circle,#1,draw,text=black, inner sep=1pt] (#2) { #3};}
+\parindent=0cm
+\usepackage{listings}
+\hypersetup{
+colorlinks=true,
+linkcolor=black,
+filecolor=magenta,
+urlcolor=cyan,
+citecolor=greenwhats
+}
+\backgroundsetup{
+	scale=1,
+	color=black,
+	opacity=0.4,
+	angle=0,
+	contents={\includegraphics[scale=1.5]{Fondoportada.png}}
+}
+\usepackage[dvipsnames,table]{xcolor}
+%\usepackage{lscape}
+\usepackage{enumitem}
+\definecolor{greenwhats}{RGB}{37, 211, 102}
+\definecolor{gris}{rgb}{0.33, 0.41, 0.47}
+\usepackage{fancyhdr}
+\usepackage{natbib}
+\usepackage{colortbl}
+\usepackage{array,booktabs}
+%\usepackage{pdflscape}
+\usepackage{longtable}
+\definecolor{codeturquoise}{RGB}{72,202,228}
+\definecolor{codeyellow}{RGB}{255,170,51}
+\definecolor{codepurple}{RGB}{255, 203, 242}
+\definecolor{codegreen}{RGB}{149,213,178}
+\definecolor{backcolour}{RGB}{73,80,87}
+\definecolor{white}{RGB}{255,255,255}
+\lstdefinestyle{estilochidori}{
+backgroundcolor=\color{backcolour},
+commentstyle=\color{codeyellow},
+keywordstyle=\color{codeturquoise},
+numberstyle=\tiny\color{codegreen},
+stringstyle=\color{codepurple},
+basicstyle=\ttfamily\footnotesize\color{white},
+breakatwhitespace=false,
+breaklines=true,
+captionpos=b,
+keepspaces=true,
+numbers=left,
+numbersep=5pt,
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+tabsize=2
+}
+\lstset{style=estilochidori}
+\begin{document}
+{
+\fontfamily{qag}\selectfont
+	\BgThispage
+\begin{titlepage}
+        \topmargin=1cm
+        \centering
+
+        {\bfseries\LARGE Universidad Autónoma de Querétaro \par}
+        \vspace{1cm}
+        {\scshape\Large  Facultad de Ingenier\'ia  \par}
+        \vspace{3cm}
+        %\centering
+        \begin{figure}[!h]
+        	\centering
+                \includegraphics[height=5cm]{Logouaq.png}
+        \end{figure}
+        \vspace{2cm}
+        {\itshape\large Parcial 2\par}
+        \vspace{3cm}
+        {\Huge Análisis numérico\par}
+        \vspace{2cm}
+        {\Large Autor: \par}
+        {\large J.A. Salinas Sánchez \par}
+        {\large Mayo 2022 \par}
+\end{titlepage}
+	\clearpage
+	\newpage
+\tableofcontents
+\chapter{Solución}
+	Este examen contiene 3 planteamientos que corresponden a 3 puntos de la valoración final. Resuelva los problemas de acuerdo a lo que estudió en clases. No olvide poner su código y capturas de pantalla mostrando su funcionamiento. Además, cuide que los resultados estén ordenados y que haya distinción entre cada uno de los problemas.
+	\begin{center}
+		Tabla de claificaciones de uso exclusivo para el profesor.\\
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			Pregunta: &1&2&3&Total:\\
+			\hline
+			Puntos:&&&&\\
+			\hline
+			Resultado:&&&&\\
+			\hline
+		\end{tabular}
+	\end{center}
+	\section{Problema 1}
+		1.(1 punto) Las estaciones de radar $A$ y $B$, separadas por una distancia $a=500m$, rastrean el avión $C$ grabando los ángulos $\alpha$ y $\beta$ en intervalos de 1 segundo. Si tres mediciones sucesivas son:\\
+		\begin{center}
+			\begin{tabular}{c|ccc}
+				\hline
+				$t(s)$&9&10&11\\
+				\hline
+				$\alpha$&54.80°&54.06°&53.34°\\
+				$\beta$&65.59°&64.59°&63.62°\\
+				\hline
+			\end{tabular}
+		\end{center}
+		calcule la velocidad del avión y del ángulo de subida $\gamma$ a $t=10s$. Se puede mostrar que las coordenadas del avión son:
+	\begin{center}
+		\begin{tabular}{cc}
+			$x=a\dfrac{\tan{\beta}}{\tan{\beta}-\tan{\alpha}}$\hfill&$y=a\dfrac{\tan{\alpha}\tan{\beta}}{\tan{\beta}-\tan{\alpha}}$\\
+		\end{tabular}
+	\end{center}
+	\section{Problema 2}
+	2.(1 punto) La siguiente tabla muestra la fuerza $F$ del arco en función del tirón $x$. Si el arco se tira $0.5m$, determine la velocidad de la flecha de $0.075kg$ cuando sale del arco. $Sugerencia$: utiliza el hecho de que $\dfrac{mv^{2}}{2}=\int_{0}^{x}Fdx$:
+	\begin{center}
+		{\small
+		\begin{tabular}{c|ccccccccccc}
+			\hline
+			$x(m)$&0&0.5&0.10&0.15&0.20&0.25&0.30&0.35&0.40&0.45&0.50\\
+			\hline
+			$F(N)$&0&37&71&104&134&161&185&207&225&239&250\\
+			\hline
+		\end{tabular}
+		}
+	\end{center}
+	\section{Problema 3}
+	3.(1 punto) Ajuste la función $f(x)=axe^{x}$ a los siguientes datos y halle la desviación estándar:
+	\begin{center}
+		\begin{tabular}{c|cccc}
+			\hline
+			x&0.5&1.0&1.5&2.0&2.5\\
+			y&0.541&0.398&0.232&0.106&0.052\\
+		\end{tabular}
+	\end{center}
+}
+\end{document}

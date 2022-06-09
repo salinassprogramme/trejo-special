@@ -1,0 +1,49 @@
+//importar paquetes
+
+                        main(){
+                                //graficar la funcion
+                                biseccion/falsaposicion()
+                                }
+
+                        biseccion/falsaposicion(){
+
+                                //definir variables
+                                //limite inferior xl
+                                //limite superior xu
+                                //resultado provisional xr
+                                //Error e
+                                //Contador de iteraciones i
+                                //lista de iteraciones iteraciones []
+                                //lista de error error[]
+                                //Bandera para soluciones exactas flag=false
+while (e>=errordeseado \&\& false!=true){
+
+                                        //guardar el valor anterior de xr en una variable temp
+                                        //calcular el error porcentual aproximado y guardarlo en e
+                                        //guardar i en una lista de iteraciones
+                                        i++;
+                                        //guardar i en iteraciones
+                                        //guardar e en error
+
+                                        //obtener nuevo xr
+                                        xr=(xl+xu)/2; //biseccion
+                                        xr=xu-(f(xu)(xl-xu))/(f(xl)-f(xu)); //falsa posicion
+                                        //comprobar la posicion de la raiz
+if (f(xr)f(xl) < 0){
+                                                xl=xr;
+                                                }
+                                        else if( f(xr)f(xl) > 0){
+                                                xu=xr;
+                                        }
+                                        else{
+                                                flag=true;
+                                                }
+                                }
+
+                                //graficar iteraciones vs error
+                                //guardar la grafica
+                                print(xr);
+                                return;
+
+                        }
+

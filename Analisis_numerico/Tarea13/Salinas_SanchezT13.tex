@@ -1,0 +1,146 @@
+%preámbulo
+\documentclass[12pt,oneside,FLEQN]{report}
+\usepackage{fancyhdr}
+\usepackage[pages=some]{background}
+\usepackage{amssymb,amsthm,amsmath,enumerate,graphicx,tabularx}
+\usepackage[utf8]{inputenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage[spanish]{babel}
+\usepackage[rflt]{floatflt}
+\usepackage{multicol}
+\usepackage{tcolorbox, empheq}
+\tcbuselibrary{skins,breakable,listings,theorems}
+\usepackage{tikz,tkz-tab}
+\usetikzlibrary{matrix,arrows, positioning,shadows,shadings,backgrounds,calc, shapes, tikzmark}
+\usepackage{subfigure}
+\usepackage{caption}
+\usepackage[a4paper]{geometry}
+\geometry{top=1.5cm, bottom=1.5cm, left=3cm, right=3cm}
+\usepackage{ragged2e}
+\newcommand{\marcar}[3]{\tikz[overlay,remember picture,baseline=-2pt] \node[circle,#1,draw,text=black, inner sep=1pt] (#2) { #3};}
+\parindent=0cm
+\usepackage{listings}
+\hypersetup{
+colorlinks=true,
+linkcolor=black,
+filecolor=magenta,
+urlcolor=cyan,
+citecolor=greenwhats
+}
+\backgroundsetup{
+	scale=1,
+	color=black,
+	opacity=0.4,
+	angle=0,
+	contents={\includegraphics[scale=1.5]{Fondoportada.png}}
+}
+\usepackage[dvipsnames,table]{xcolor}
+%\usepackage{lscape}
+\usepackage{enumitem}
+\definecolor{greenwhats}{RGB}{37, 211, 102}
+\definecolor{gris}{rgb}{0.33, 0.41, 0.47}
+\usepackage{fancyhdr}
+\usepackage{natbib}
+\usepackage{colortbl}
+\usepackage{array,booktabs}
+%\usepackage{pdflscape}
+\usepackage{longtable}
+\definecolor{codeturquoise}{RGB}{72,202,228}
+\definecolor{codeyellow}{RGB}{255,170,51}
+\definecolor{codepurple}{RGB}{255, 203, 242}
+\definecolor{codegreen}{RGB}{149,213,178}
+\definecolor{backcolour}{RGB}{73,80,87}
+\definecolor{white}{RGB}{255,255,255}
+\lstdefinestyle{estilochidori}{
+backgroundcolor=\color{backcolour},
+commentstyle=\color{codeyellow},
+keywordstyle=\color{codeturquoise},
+numberstyle=\tiny\color{codegreen},
+stringstyle=\color{codepurple},
+basicstyle=\ttfamily\footnotesize\color{white},
+breakatwhitespace=false,
+breaklines=true,
+captionpos=b,
+keepspaces=true,
+numbers=left,
+numbersep=5pt,
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+tabsize=2
+}
+\lstset{style=estilochidori}
+\begin{document}
+{
+\fontfamily{qag}\selectfont
+	\BgThispage
+\begin{titlepage}
+        \topmargin=1cm
+        \centering
+
+        {\bfseries\LARGE Universidad Autónoma de Querétaro \par}
+        \vspace{1cm}
+        {\scshape\Large  Facultad de Ingenier\'ia  \par}
+        \vspace{3cm}
+        %\centering
+        \begin{figure}[!h]
+        	\centering
+                \includegraphics[height=5cm]{Logouaq.png}
+        \end{figure}
+        \vspace{2cm}
+        {\itshape\large Tarea 13: Diferenciación numérica\par}
+        \vspace{3cm}
+        {\Huge Análisis numérico\par}
+        \vspace{2cm}
+        {\Large Autor: \par}
+        {\large J.A. Salinas Sánchez \par}
+        {\large Mayo 2022 \par}
+\end{titlepage}
+	\clearpage
+	\newpage
+\tableofcontents
+\chapter{Introducción}
+Como parte del cálculo infinitesimal,  la diferenciación cobra vital importancia pues, al igual que la integración, la diferenciación sirve para tratar con infinitos, solo que, en lugar de los infinitos infinitos dentro de un rango finito; limitar ese rango para tratar con infinitos particulares. Es decir, en lugar de las generalidades; en lo específico. Pues, al contrario de la integración; la cual sirve para sumar, promediar y caracterizar las propiedades cambiantes infinitesimalmente a lo largo de un intervalo de $n$ dimensiones (una recta, un área, un volumen o un hipervolumen). La diferenciación sirve para caracterizar dichar propiedades en cada punto del infinitesimal del tiempo; obteniendo su tasa de cambio en dicho punto. Eso nos permite efectuar predicciones, interpolaciones, obtener resultado a ecuaciones, definir ciertas propiedades fisico-matemáticas relacionadas al cambio. Así mismo, la diferenciación permite obtener funciones a partir de simplemente sus razones de cambio: las famosas ecuaciones diferenciales.\\
+
+Aunque en este apartado no se tratará la resolución de ecuaciones diferenciales, sí se verá la forma de dar solución a derivadas, de forma numérica. Al igual que las integrales, las derivadas pueden ser calculadas desde su definición, tanto para obtener soluciones analíticas, como para soluciones numéricas; simplemente aplicándola para un límite finito en lugar de uno infinitesimal. La definición formal de la derivada es la siguiente:
+\begin{equation}
+	f'(x)=\lim_{x\to\infty}\dfrac{f(x+\Delta x)-f(x)}{\Delta x}
+\end{equation}
+\section{Diferencias finitas}
+Donde $\Delta x$ es un incrimento infinitesimal dentro de la función y, siguiendo lo antes dicho, éste se puede reemplazar por un aumento numérico, finito y arbitrario. Dejando lo siguiente:
+
+\begin{equation}
+	f'(x)\approx\dfrac{f(x+h)-f(x)}{h}
+\end{equation}
+Donde se usa $h$ para indicar el cambio en la definición del incremento.\\
+
+Luego, apartir de la ecuación anterior, se puede decidir si aproximar desde un lado o del otro de la recta numérica. Entonces, aplicando propiedades de las funciones:
+\begin{align}
+	f'(x)\approx\dfrac{f(x+h-h)-f(x-h)}{h}=\dfrac{f(x)-f(x-h)}{h}\\
+	\land\\
+	f'(x)\approx\dfrac{f(x+h+h)-f(x+h)}{h}=\dfrac{f(x+2h)-f(x+h)}{h}
+\end{align}
+Finalmente, uno puede, al igual que con la integración, obtener una aproximación centrada:
+\begin{equation}
+	f'(x)\approx\dfrac{f(x+2h)-f(x-h)}{2h}
+\end{equation}
+Aparte de esto, existe otros métodos basados en extrapolaciones que, una vez calculadas algunas antiprimitivas; utilizan los valores para mejorar su precisión. Así es el caso de todos lo métodos de derivadas por diferencias finitas por adelante, atrás y centradas; con rangos de error $h^{2},h^{2}$ y $h^{4}$ respectivamente:
+\begin{align}
+	f'(x)\approx\dfrac{-f(x+2h)+4f(x+h)-3f(x)}{2h}\hfill\\
+	f'(x)\approx\dfrac{f(x)-4f(x-h)+3f(x-2h)}{2h}\hfill\\
+	f'(x)\approx\dfrac{-f(x+2h)+8f(x+h)-8f(x-h)+f(x-2h)}{12h}\hfill
+\end{align}
+\section{Extrapolación de Richardson}
+Como ya se dijo antes, una extrapolación consta en utilizar datos para obtener otros datos. Tal es el caso de la extrapolación de Richardson que, al igual que con la integración; utiliza dos aproximaciones previas para obtener una nueva y más precisa. No obstante, como la derivada no se derine como un proceso iterativo {\it per se}; la extrapolación de Richarson no puede generar una fórmula para el ik-ésimo nivel de aproximación y se limita a dotar de mayor peso a la aproximación más exacta, y menor, a la menos exacta en una razón $4:1$:
+\begin{equation}
+	D\approx\dfrac{4}{3}D(h_{2})-\dfrac{1}{3}D(h_{1})
+\end{equation}
+\chapter{Desarrollo y método}
+\section{Método}
+Para solucionar el siguiente conjunto de problemas, se escribió un único método capáz de realizar cálculos simbólicos, así como poder realizarlos a partir de un número pequeño de entradas por parte del usuario. Este código se basa en pedir la función a diferenciar, el factor $h$ , y en caso de que el usuario quisiere la extrapolación de Richardson, pedirle el factor $h2$ para realizar los cálculos. Esto se hizo pensando en pedir el menor número de entradas al usuario.\\
+
+Luego, el código computa una aproximación utilizando la paquetería del lenguaje {\bf python3} y el resto de aproximaciones (adelante, atrás y centro con dos grados de precisión). Con estos datos, se calcula el error relativo aproximado de cada aproximación y lo imprime. Por último, si el usuario solicitó la extrapolación de Richardson, el código pide $h2$ y ejecuta el mismo procedimiento que con los casos anteriores.
+		\subsection{Código}
+			\lstinputlisting{Tarea13.py}
+}
+\end{document}

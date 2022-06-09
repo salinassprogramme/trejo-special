@@ -1,0 +1,169 @@
+%preámbulo
+\documentclass[12pt,oneside,FLEQN]{report}
+\usepackage{amssymb,amsthm,amsmath,enumerate,graphicx,tabularx}
+\usepackage[utf8]{inputenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage[spanish]{babel}
+\usepackage[rflt]{floatflt}
+\usepackage{multicol}
+\usepackage{tcolorbox, empheq}
+\tcbuselibrary{skins,breakable,listings,theorems}
+\usepackage{tikz,tkz-tab}
+\usetikzlibrary{matrix,arrows, positioning,shadows,shadings,backgrounds,calc, shapes, tikzmark}
+\usepackage{subfigure}
+\usepackage{caption}
+\usepackage[a4paper]{geometry}
+\geometry{top=1.5cm, bottom=1.5cm, left=3cm, right=3cm}
+\usepackage{ragged2e}
+\newcommand{\marcar}[3]{\tikz[overlay,remember picture,baseline=-2pt] \node[circle,#1,draw,text=black, inner sep=1pt] (#2) { #3};}
+\parindent=0cm
+\usepackage{listings}
+\hypersetup{
+colorlinks=true,
+linkcolor=black,
+filecolor=magenta,
+urlcolor=cyan,
+citecolor=greenwhats
+}
+\usepackage[dvipsnames,table]{xcolor}
+%\usepackage{lscape}
+\usepackage{enumitem}
+\definecolor{greenwhats}{RGB}{37, 211, 102}
+\definecolor{gris}{rgb}{0.33, 0.41, 0.47}
+\usepackage{fancyhdr}
+\usepackage{natbib}
+\usepackage{colortbl}
+\usepackage{array,booktabs}
+%\usepackage{pdflscape}
+\usepackage{longtable}
+\definecolor{codeturquoise}{RGB}{72,202,228}
+\definecolor{codeyellow}{RGB}{255,170,51}
+\definecolor{codepurple}{RGB}{255, 203, 242}
+\definecolor{codegreen}{RGB}{149,213,178}
+\definecolor{backcolour}{RGB}{73,80,87}
+\definecolor{white}{RGB}{255,255,255}
+\lstdefinestyle{estilochidori}{
+backgroundcolor=\color{backcolour},
+commentstyle=\color{codeyellow},
+keywordstyle=\color{codeturquoise},
+numberstyle=\tiny\color{codegreen},
+stringstyle=\color{codepurple},
+basicstyle=\ttfamily\footnotesize\color{white},
+breakatwhitespace=false,
+breaklines=true,
+captionpos=b,
+keepspaces=true,
+numbers=left,
+numbersep=5pt,
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+tabsize=2
+}
+\lstset{style=estilochidori}
+\begin{document}
+{
+\fontfamily{qag}\selectfont
+\begin{titlepage}
+        \topmargin=0cm
+        \centering
+
+        {\bfseries\LARGE Universidad Autónoma de Querétaro \par}
+        \vspace{1cm}
+        {\scshape\Large  Facultad de Ingenier\'ia  \par}
+        \vspace{2cm}
+        \centering
+        \begin{figure}[!h]
+        \centering
+                \includegraphics[height=5cm]{Logouaq.png}
+        \end{figure}
+        \vspace{3cm}
+        {\itshape\large Tarea 7: Descomposición de Cholesky y Gauss-Seidel\par}
+        \vspace{3cm}
+        {\Huge Análisis numérico \par}
+        \vspace{2cm}
+        {\Large Autor: \par}
+        {\large J.A. Salinas Sánchez \par}
+        {\large Marzo2022 \par}
+\end{titlepage}
+\tableofcontents
+\chapter{Introducción}
+\chapter{Metodología}
+	\section{Códigos}
+		\subsection{Cholesky}
+			\lstinputlisting{cholesky.py}
+		\subsection{NR multivariable}
+			\lstinputlisting{NRNL.py}
+		\subsection{Gauss-Seidel}
+			\lstinputlisting{gseidel.py}
+	\section{Ejercicios}
+		\subsection{Chapra}
+			\subsubsection{11.3}
+			Determine la matriz inversa del ejemplo 11.1 con base en la descomposición LU y los vectores unitarios:
+			\begin{align}
+				\begin{pmatrix}
+					0.8&-0.4&0\\
+					-0.4&0.8&-0.4\\
+					0&-0.4&0.8
+				\end{pmatrix}
+				\begin{pmatrix}
+					x_{1}\\
+					x_{2}\\
+					x_{3}
+				\end{pmatrix}\\
+				=\begin{pmatrix}
+					41\\
+					25\\
+					105
+				\end{pmatrix}
+			\end{align}
+			\subsubsection{11.5}
+			Haga los mismos cálculos que en el ejemplo 11.2, pero para el sistema simétrico que sigue:
+			\begin{align}
+                                \begin{pmatrix}
+					6&15&55\\
+                                        15&55&255\\
+					55&255&979
+                                \end{pmatrix}
+                                \begin{pmatrix}
+                                        a_{1}\\
+                                        a_{2}\\
+                                        a_{3}
+                                \end{pmatrix}\\
+                                =\begin{pmatrix}
+                                        152.6\\
+                                        585.6\\
+                                        2488.8
+                                \end{pmatrix}
+                        \end{align}
+			\subsubsection{11.7}
+			Calcule la descomposición de Cholesky de:
+			\begin{align}
+                                \begin{pmatrix}
+                                        9&0&0\\
+                                        0&25&0\\
+                                        0&0&4
+                                \end{pmatrix}
+                        \end{align}
+			\subsubsection{11.13}
+			Use el método de Gauss-Seidel (a) sin relajación y (b) con relajación ($\lambda$ = 1.2), para resolver el sistema siguiente para una tolerancia de es = 5\%. Si es necesario, reacomode las ecuaciones para lograr convergencia.
+		\begin{align}
+                                \begin{pmatrix}
+                                        2&-6&-1=-38\\
+                                        -3&-1&7=-34\\
+                                        -8&1&-2=-20
+                                \end{pmatrix}
+                        \end{align}
+		\subsection{Kiusalaas}
+			\subsubsection{23}
+			Determine the coordinates of the two points where the circles $(x − 2)^2 + y^2 = 4$ and $x^2 + (y − 3)^2 = 4$ intersect. Start by estimating the locations of the points from a sketch of the circles, and then use the Newton-Raphson method to compute the coordinates.
+			\subsubsection{24}
+			Las ecuaciones:
+			\begin{align}
+				\sin{x}+3\cos{x}-2=0\\
+				\cos{x}-\sin{y}+0.2=0
+			\end{align}
+\chapter{Conclusión}
+
+}
+\end{document}
